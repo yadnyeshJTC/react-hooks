@@ -1,21 +1,18 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 
 const UnControlled = () => {
-  const [isPending, setIsPending] = useState(false);
-
-  const changePending = () => {
-    setIsPending(true);
-  };
-
-  useEffect(() => {
-    changePending();
-  }, []);
-
-  if (isPending) {
-    return <div>Hello World</div>;
-  } else {
-    return <div>Hello Tony</div>;
+  const formRef = useRef<HTMLFormElement>(null);
+  function onSubmit(e: any) {
+    console.log(formRef);
   }
+  return (
+    <form onSubmit={onSubmit} ref={formRef}>
+      <h2>User</h2>
+      <input type="text" name="name" id="name" />
+      <input type="password" name="password" id="password" />
+      <input type={"button"} value="submit" onClick={onSubmit} />
+    </form>
+  );
 };
 
 export default UnControlled;
